@@ -52,17 +52,17 @@ public class Window_Console extends JFrame implements ActionListener {
 		add(LB_Sleep);
 		
 		// Configuration of TextFields
-		TF_SleepTime = new JTextField("12");
+		TF_SleepTime = new JTextField("0");
 		TF_SleepTime.setBounds(80, 109, 165, 30);
 		add(TF_SleepTime);
 
 		// Configuration of ComboBox
 		CB_Algorithm = new JComboBox();
-		CB_Algorithm.addItem("Dijkstra's Algorithm");
+		CB_Algorithm.addItem("Breadth-first Search");
 		CB_Algorithm.addItem("Greedy Algorithm1");
 		CB_Algorithm.addItem("Greedy Algorithm2");
 		CB_Algorithm.addItem("A* Search Algorithm");
-		CB_Algorithm.setSelectedItem("Dijkstra's Algorithm");
+		CB_Algorithm.setSelectedItem("A* Search Algorithm");
 		CB_Algorithm.setBounds(80, 9, 165, 30);
 		add(CB_Algorithm);
 		
@@ -73,6 +73,7 @@ public class Window_Console extends JFrame implements ActionListener {
 		CB_Map.addItem("Map 4");
 		CB_Map.addItem("Map 5");
 		CB_Map.addItem("Map 6");
+		CB_Map.addItem("Map 7");
 		CB_Map.setSelectedItem("Map 1");
 		CB_Map.setBounds(80, 59, 165, 30);
 		add(CB_Map);
@@ -108,6 +109,9 @@ public class Window_Console extends JFrame implements ActionListener {
 		case 5:
 			WD_Paint = new Window_Paint(algoChosen, Entrance.Obst6);
 			break;
+		case 6:
+			WD_Paint = new Window_Paint(algoChosen, Entrance.Obst7);
+			break;
 		default:
 			System.out.println("Debug>> Error code: 233.");
 			break;
@@ -115,7 +119,7 @@ public class Window_Console extends JFrame implements ActionListener {
 		
 		switch (CB_Algorithm.getSelectedIndex()) {
 		case 0:
-			WD_Paint.obst.AlgoDijkstra(WD_Paint.canvas);
+			WD_Paint.obst.AlgoBFS(WD_Paint.canvas);
 			break;
 		case 1:
 			WD_Paint.obst.AlgoGreedy1(WD_Paint.canvas);

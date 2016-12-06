@@ -22,7 +22,38 @@ public class Entrance {
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
+
 	static final boolean[][] obst_bool2 = {
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, T, T, T, T, T, T, T, T, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, T, T, T, T, T, T, T, T, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
+	static final boolean[][] obst_bool3 = {
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, T, F, F, T, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
+			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
+	static final boolean[][] obst_bool4 = {
 			{ F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, T, F, F, F, F, },
 			{ F, F, F, T, T, T, F, F, F, F, F, T, F, F, F, T, T, F, F, F, F, F, },
 			{ F, F, T, T, F, F, T, T, T, F, F, T, F, F, T, F, F, F, T, F, F, F, },
@@ -41,22 +72,7 @@ public class Entrance {
 			{ F, F, F, T, F, F, T, F, F, F, F, F, T, F, T, F, F, F, F, F, F, F, },
 			{ F, F, F, T, T, T, T, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
-	static final boolean[][] obst_bool3 = {
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, T, T, T, T, T, T, T, T, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, T, T, T, T, T, T, T, T, T, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
-			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
-	static final boolean[][] obst_bool4 = {
+	static final boolean[][] obst_bool5 = {
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, T, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
@@ -95,7 +111,7 @@ public class Entrance {
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
-	static final boolean[][] obst_bool5 = {
+	static final boolean[][] obst_bool6 = {
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, T, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, T, F, F, F, T, T, T, T, T, T, T, T, T, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, F, F, T, F, T, F, F, F, F, F, F, F, F, F, F, },
@@ -134,7 +150,7 @@ public class Entrance {
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, }};
-	static final boolean[][] obst_bool6 = {
+	static final boolean[][] obst_bool7 = {
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, T, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, T, F, F, F, T, T, T, T, T, T, T, T, T, F, F, T, F, F, F, F, F, F, F, F, F, F, F, },
 			{ F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, T, T, F, F, T, F, T, F, F, F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, },
@@ -179,15 +195,16 @@ public class Entrance {
 	public static ObstacleMap Obst4;
 	public static ObstacleMap Obst5;
 	public static ObstacleMap Obst6;
+	public static ObstacleMap Obst7;
 	
 	public static void main(String[] args) {
 		Obst1 = new ObstacleMap(obst_bool1,14,22,4,5,11,18);
-		Obst2 = new ObstacleMap(obst_bool2,18,22,12,3,12,5);
-		Obst3 = new ObstacleMap(obst_bool3,14,22,7,4,12,17);
-		Obst4 = new ObstacleMap(obst_bool4,38,44,17,2,17,42);
+		Obst2 = new ObstacleMap(obst_bool2,14,22,7,4,12,17);
+		Obst3 = new ObstacleMap(obst_bool3,14,22,7,3,7,19);
+		Obst4 = new ObstacleMap(obst_bool4,18,22,12,3,12,5);
 		Obst5 = new ObstacleMap(obst_bool5,38,44,17,2,17,42);
-		Obst6 = new ObstacleMap(obst_bool6,38,57,17,2,17,42);
-		System.out.println();
+		Obst6 = new ObstacleMap(obst_bool6,38,44,17,2,17,42);
+		Obst7 = new ObstacleMap(obst_bool7,38,57,17,2,17,42);
 		WD_Console = new Window_Console();
 		System.out.println("Debug>> Start to run.");
 
