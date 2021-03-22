@@ -23,6 +23,7 @@ public class ObstacleMap {
 	public int sx, sy, ex, ey;
 	public boolean[][] vect;
 	public int[][] rt;
+	public boolean[][] vis;
 	public Stack<XYT> st;
 
 	ObstacleMap(boolean[][] bb, int xx, int yy, int xx1, int yy1, int xx2, int yy2) {
@@ -42,6 +43,7 @@ public class ObstacleMap {
 			for (int j = 1; j <= yy; ++j)
 				vect[i][j] = bb[i - 1][j - 1];
 		rt = new int[xx + 2][yy + 2];
+		vis = new boolean[xx + 2][yy + 2];
 	}
 
 	ObstacleMap(ObstacleMap ob) {
@@ -56,6 +58,7 @@ public class ObstacleMap {
 			for (int j = 0; j < y + 2; ++j)
 				vect[i][j] = ob.vect[i][j];
 		rt = new int[x + 2][y + 2];
+		vis = new boolean[x + 2][y + 2];
 		st = new Stack<XYT>();
 		SleepTime = Integer.parseInt(Entrance.WD_Console.TF_SleepTime.getText());
 	}
@@ -403,7 +406,7 @@ public class ObstacleMap {
 				canvas.repaint();
 				Queue<Astar> pq = new PriorityQueue<Astar>(1000007, new Comparator<Astar>() {
 					public int compare(Astar a, Astar b) {
-						return a.h - b.h;
+						return a.f - b.f;
 					}
 				});
 				pq.add(new Astar(sx, sy, 0));
@@ -412,7 +415,7 @@ public class ObstacleMap {
 
 				while (!pq.isEmpty()) {
 					now = pq.poll();
-
+					vis[now.x][now.y] = true;
 					/*
 					int distx = sx - now.x;
 					int disty = sy - now.y;
@@ -442,22 +445,25 @@ public class ObstacleMap {
 						rt[now.x-a][now.y - b] = now.g + 1;
 					}
 					 */
-
 					if (JudgeOffer(new XYT(now.x, now.y, now.g), 1, 0)) {
 						pq.add(new Astar(now.x + 1, now.y, now.g + 1));
 						rt[now.x + 1][now.y] = now.g + 1;
+						//rt[now.x + 1][now.y] = new Astar(now.x + 1, now.y, now.g + 1).h;
 					}
 					if (JudgeOffer(new XYT(now.x, now.y, now.g), -1, 0)) {
 						pq.add(new Astar(now.x - 1, now.y, now.g + 1));
 						rt[now.x - 1][now.y] = now.g + 1;
+						//rt[now.x - 1][now.y] = new Astar(now.x - 1, now.y, now.g + 1).h;
 					}
 					if (JudgeOffer(new XYT(now.x, now.y, now.g), 0, 1)) {
 						pq.add(new Astar(now.x, now.y + 1, now.g + 1));
 						rt[now.x][now.y + 1] = now.g + 1;
+						//rt[now.x][now.y + 1] = new Astar(now.x, now.y + 1, now.g + 1).h;
 					}
 					if (JudgeOffer(new XYT(now.x, now.y, now.g), 0, -1)) {
 						pq.add(new Astar(now.x, now.y - 1, now.g + 1));
 						rt[now.x][now.y - 1] = now.g + 1;
+						//rt[now.x][now.y - 1] = new Astar(now.x, now.y - 1, now.g + 1).h;
 					}
 					
 					if (now.x == ex && now.y == ey)
@@ -477,7 +483,7 @@ public class ObstacleMap {
 				else {
 					XYT p = new XYT(now.x, now.y, now.g);
 					Stack<XYT> stt = new Stack<XYT>();
-					while (p.t != 0) {
+					while (p.t != 1) {
 						int distx = sx - p.x;
 						int disty = sy - p.y;
 						int a, b;
@@ -488,28 +494,47 @@ public class ObstacleMap {
 							a = 0;
 							b = 1;
 						}
-						if (distx < 0)
-							a = -a;
-						if (disty < 0)
-							b = -b;
-						if (rt[p.x + a][p.y + b] < (p.t))
-							stt.add(new XYT(p.x += a, p.y += b, p.t = rt[p.x][p.y]));
-						else if (rt[p.x + b][p.y + a] < (p.t))
-							stt.add(new XYT(p.x += b, p.y += a, p.t = rt[p.x][p.y]));
-						else if (rt[p.x - b][p.y - a] < (p.t))
+						if (distx < 0) a = -a;
+						if (disty < 0) b = -b;
+						
+						/*
+						if ((vis[p.x - b][p.y - a]) && rt[p.x - b][p.y - a] < (p.t))
 							stt.add(new XYT(p.x -= b, p.y -= a, p.t = rt[p.x][p.y]));
-						else if (rt[p.x - a][p.y - b] < (p.t))
+						else if ((vis[p.x + b][p.y + a]) && rt[p.x + b][p.y + a] < (p.t))
+							stt.add(new XYT(p.x += b, p.y += a, p.t = rt[p.x][p.y]));
+						else if ((vis[p.x - a][p.y - b]) && rt[p.x - a][p.y - b] < (p.t))
 							stt.add(new XYT(p.x -= a, p.y -= b, p.t = rt[p.x][p.y]));
+						else if ((vis[p.x + a][p.y + b]) && rt[p.x + a][p.y + b] < (p.t))
+							stt.add(new XYT(p.x += a, p.y += b, p.t = rt[p.x][p.y]));
+						*/
+						Queue<XYT> pq2 = new PriorityQueue<XYT>(6, new Comparator<XYT>() {
+							public int compare(XYT a, XYT b) {
+								if(a.t - b.t == 0) return vis[a.x][a.y]?-1:0;
+								return a.t - b.t;
+							}
+						});
+						if (rt[p.x + a][p.y + b] < (p.t))
+							pq2.add(new XYT(p.x + a, p.y + b, rt[p.x + a][p.y + b]));
+						if (rt[p.x - a][p.y - b] < (p.t))
+							pq2.add(new XYT(p.x - a, p.y - b, rt[p.x - a][p.y - b]));
+						if (rt[p.x + b][p.y + a] < (p.t))
+							pq2.add(new XYT(p.x + b, p.y + a, rt[p.x + b][p.y + a]));
+						if (rt[p.x - b][p.y - a] < (p.t))
+							pq2.add(new XYT(p.x - b, p.y - a, rt[p.x - b][p.y - a]));
+						p = pq2.poll();
+						stt.add(p);
 					}
-
+					
 					while (!stt.isEmpty()) {
 						p = stt.pop();
 						rt[p.x][p.y] = Window_Paint.PW + p.t;
 						canvas.repaint();
-						try {
-							Thread.sleep(SleepTime);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						if(SleepTime>0) {
+							try {
+								Thread.sleep(SleepTime);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 					JOptionPane.showMessageDialog(null, "The Shortest Path Is " + (p.t + 1) + ".");
@@ -553,14 +578,42 @@ public class ObstacleMap {
 
 	public class Astar {
 		int x, y;
-		int g, h;
+		int f, g, h;
 
 		Astar(int xx, int yy, int gg) {
 			x = xx;
 			y = yy;
 			g = gg;
 			
-			h = Math.abs((x - ex) * (sy-ey) - (sx-ex) * (y-ey))/5 + (Math.abs(x - ex) + Math.abs(y-ey))*100;
+			h = H2();
+			
+			f = 1000 * (g + h) + H4();
+		}
+		
+		int H1() {
+			int dx = Math.abs(x - ex);
+			int dy = Math.abs(y - ey);
+			return Math.max(dx, dy);
+		}
+		
+		int H2() {
+			int dx = Math.abs(x - ex);
+			int dy = Math.abs(y - ey);
+			return dx + dy;
+		}
+		
+		int H3() {
+			int dx = Math.abs(x - ex);
+			int dy = Math.abs(y - ey);
+			return (int)Math.sqrt(dx*dx+dy*dy) * 2;
+		}
+		
+		int H4() { // 需要配合其他启发式函数使用，建议乘以权值0.001（但是我这里用的int。。。）
+			int dx1 = x - ex;
+			int dy1 = y - ey;
+			int dx2 = sx - ex;
+			int dy2 = sy - ey;
+			return Math.abs(dx1 * dy2 - dx2 * dy1);
 		}
 	}
 }
